@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/bookmark"
+            android:icon="@drawable/bookmark"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="북마크"
+            />
+        <item
+            android:id="@+id/note"
+            android:icon="@drawable/note"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="레시피 노트"
+            />
+        <item
+            android:id="@+id/memo"
+            android:icon="@drawable/shop"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:title="장보기 메모"
+            />
+    </group>
+</menu>
