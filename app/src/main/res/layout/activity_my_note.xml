@@ -7,14 +7,19 @@
     android:orientation="vertical"
     tools:context=".my_note">
 
+    <include
+        layout="@layout/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <EditText
         android:layout_width="350dp"
         android:layout_height="500dp"
         android:layout_gravity="center"
         android:gravity="clip_horizontal"
+        android:layout_marginTop="30dp"
         android:padding="15dp"
         android:background="@drawable/next_clipping"
-        android:hint="장보기 목록을 적어보세요!"/>
+        android:hint="나만의 레시피를 작성해보세요!"/>
 
 </LinearLayout>

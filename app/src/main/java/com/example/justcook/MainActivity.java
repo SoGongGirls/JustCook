@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import androidx.core.view.GravityCompat;
-
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -21,9 +19,10 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
-
+    NavigationView navigationView;
+    BottomNavigationView bottomNavigationView;
     DrawerLayout drawer_layout;
     View my_page;
     View drawer;
@@ -40,23 +39,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()) {
-            case R.id.bookmark:
-                Intent bookmark_i1 = new Intent(MainActivity.this, my_bookmark.class);
-                startActivity(bookmark_i1);
-            case R.id.note:
-                Toast.makeText(getApplicationContext(),"노트", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.memo:
-                return true;
-        }
-
         int id = item.getItemId();
-
         return super.onOptionsItemSelected(item);
     }
-
 
 
 
@@ -73,6 +58,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
 
+        bottomNavigationView = findViewById(R.id.bottom);
+        navigationView = findViewById(R.id.drawer);
+
+
         my_page.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // 초기화면 설정
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom);
 
         // fragment 설정
         bottomNavigationView.setOnNavigationItemSelectedListener(
@@ -112,36 +100,40 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         );
 
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch(menuItem.getItemId()) {
+                    case R.id.bookmark:
+                        Intent i_bookmark = new Intent(MainActivity.this, my_bookmark.class);
+                        startActivity(i_bookmark);
+                        break;
+
+                    case R.id.note:
+                        Intent i_note = new Intent(MainActivity.this, my_note.class);
+                        startActivity(i_note);
+                        break;
+
+                    case R.id.memo:
+                        Intent i_memo = new Intent(MainActivity.this, my_memo.class);
+                        startActivity(i_memo);
+                        break;
+                }
+                drawer_layout.closeDrawer(navigationView);
+                return false;
+            }
+
+        });
+
+
 
 
     }// onCreate()
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
-        int id = menuItem.getItemId();
-
-        if (id == R.id.bookmark) {
-
-            Intent bookmark_i1 = new Intent(MainActivity.this, my_bookmark.class);
-            startActivity(bookmark_i1);
-
-        } else if (id == R.id.note) {
-            Toast.makeText(getApplicationContext(), "망망망", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.memo) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-
-        return true;
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
-
 }

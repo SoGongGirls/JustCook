@@ -1,9 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".manual_guide">
+    tools:context=".auto_guide">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:id="@+id/btn_close"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/close"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/auto_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="식재료 인식을 위한 \n입력가이드"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:fontFamily="@font/sangmundong"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/silver"
+            android:layout_marginBottom="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="촬영 전, 준비해주세요"
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="촬영하고자 하는 식재료 옆에 다른 사물이 최대한 보이지 않도록 촬영해 주세요.\n\n식재료가 잘 보이도록 충분히 밝기를 조정해 주세요."
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="어떻게 하는 건가요?"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="225dp"
+            android:layout_marginBottom="15dp"
+            app:cardCornerRadius="20dp">
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/refrigerator2" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="냉장고를 열어 추가하고자 하는 재료를 찾습니다."
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="230dp"
+            android:layout_marginBottom="15dp"
+            app:cardCornerRadius="20dp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tomato2" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="화면에 표시된 가이드 규격에 맞게 촬영해주세요."
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="스마트폰 카메라를 이용하여 가지고 있는 식재료들을 촬영하면, '요리만해'가 사진을 분석하여 자동으로 냉장고 목록에  해당 식재료를 추가합니다."
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="한 번에 잘 찍으려면?"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/silver"
+            android:layout_marginBottom="25dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="자주 묻는 질문 Q/A"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:text="냉장고에 있는 재료들을 "
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+</ScrollView>
