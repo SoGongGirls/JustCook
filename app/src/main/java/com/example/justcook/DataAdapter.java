@@ -5,60 +5,68 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataAdapter {
-    protected static final String TAG="DataAdapter";
+    protected static final String TAG = "DataAdapter";
     // todo : 테이블 이름 명시
-    protected static final String TABLE_NAME="recipe_info_ver4";
+    protected static final String TABLE_NAME = "recipe_info_ver4";
 
     private final Context mContext;
     private SQLiteDatabase mDb;
     private DataBaseHelper mDbHelper;
 
-    public DataAdapter(Context context){
+    public DataAdapter(Context context) {
         this.mContext = context;
         mDbHelper = new DataBaseHelper(mContext);
     }
 
-    public DataAdapter createDatabase() throws SQLException{
-        try{
+    public DataAdapter createDatabase() throws SQLException {
+        try {
             mDbHelper.createDataBase();
-        }catch (IOException mIOException){
-            Log.e(TAG, mIOException.toString()+" UnableToCreateDatabase");
+        } catch (IOException mIOException) {
+            Log.e(TAG, mIOException.toString() + " UnableToCreateDatabase");
             throw new Error("UnableToCreateDatabase");
         }
         return this;
     }
 
-    public DataAdapter open() throws SQLException{
-        try{
+    public DataAdapter open() throws SQLException {
+        try {
             mDbHelper.openDataBase();
             mDbHelper.close();
             mDb = mDbHelper.getReadableDatabase();
-        }catch (SQLException mSQLException){
+        } catch (SQLException mSQLException) {
             Log.e(TAG, "open >>" + mSQLException.toString());
             throw mSQLException;
         }
         return this;
     }
 
-    public void close(){ mDbHelper.close(); }
+    public void close() {
+        mDbHelper.close();
+    }
 
-    public List getTableData(){
-        try{
+    public List getTableData() {
+        try {
             //Table 이름 -> antpool_bitcoin 불러오기???
-            String sql = "SELECT * FROM "+TABLE_NAME;
+            String sql = "SELECT * FROM " + TABLE_NAME;
             List infoList = new ArrayList();//모델을 넣을 리스트
             recipe_info r_info = null; // Todo :모델 선언?
 
             Cursor mCur = mDb.rawQuery(sql, null);
-            if(mCur != null){
+            if (mCur != null) {
                 //칼럼 마지막까지
-                while(mCur.moveToNext()){
+                while (mCur.moveToNext()) {
                     // Todo : 커스텀 모델 생성
                     r_info = new recipe_info();
 
@@ -81,11 +89,12 @@ public class DataAdapter {
                 }
             }
             return infoList;
-        }
-        catch(SQLException mSQLException){
-            Log.e(TAG, "getTestData >>"+mSQLException.toString());
+        } catch (SQLException mSQLException) {
+            Log.e(TAG, "getTestData >>" + mSQLException.toString());
             throw mSQLException;
         }
     }
-
 }
+
+
+
