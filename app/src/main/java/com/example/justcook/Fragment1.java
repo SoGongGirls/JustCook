@@ -33,7 +33,7 @@ public class Fragment1 extends Fragment {
         btn_auto = rootView.findViewById(R.id.btn_auto);
         btn_manual = rootView.findViewById(R.id.btn_manual);
         btn_json = rootView.findViewById(R.id.button_json);
-        btn_rinfo = rootView.findViewById(R.id.button_rinfo);
+        //btn_rinfo = rootView.findViewById(R.id.button_rinfo);
         btn_guide1 = rootView.findViewById(R.id.btn_guide1);
         btn_guide2 = rootView.findViewById(R.id.btn_guide2);
         btn_auto.setOnClickListener(new View.OnClickListener() {
@@ -60,13 +60,13 @@ public class Fragment1 extends Fragment {
             }
         });
         //db연동 확인용 추후 삭제
-        btn_rinfo.setOnClickListener(new View.OnClickListener() {
+        /*btn_rinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i_rinfo = new Intent(getActivity(), Fragment3.class);
                 startActivity(i_rinfo);
             }
-        });
+        });*/
 
 
         btn_guide1.setOnClickListener(new View.OnClickListener() {

@@ -15,6 +15,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".CameraJson"></activity>
         <activity android:name=".manual_guide"></activity>
+
         <activity android:name=".auto_guide" />
         <activity android:name=".recipe" />
         <activity android:name=".Camera" />
@@ -33,6 +34,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+        <activity android:name=".fragment_3"/>
+        <activity android:name=".Fragment3"/>
+
 
         <provider
             android:name="androidx.core.content.FileProvider"
