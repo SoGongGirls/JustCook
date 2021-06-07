@@ -10,4 +10,8 @@
     <color name="silver">#eeeeee</color>
     <color name="gray">#c2c2c2</color>
     <color name="black">#000</color>
+
+    <color name="tfe_color_primary">#ffa800</color>
+    <color name="tfe_color_primary_dark">#ff6f00</color>
+    <color name="tfe_semi_transparent">#66000000</color>
 </resources>

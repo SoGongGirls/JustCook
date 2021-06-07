@@ -16,6 +16,9 @@
         <activity android:name=".CameraJson"></activity>
         <activity android:name=".manual_guide"></activity>
 
+        <activity android:name=".CameraActivity"></activity>
+        <activity android:name=".DetectorActivity"></activity>
+
         <activity android:name=".auto_guide" />
         <activity android:name=".recipe" />
         <activity android:name=".Camera" />

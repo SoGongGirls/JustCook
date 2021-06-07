@@ -36,10 +36,12 @@ public class Fragment1 extends Fragment {
         //btn_rinfo = rootView.findViewById(R.id.button_rinfo);
         btn_guide1 = rootView.findViewById(R.id.btn_guide1);
         btn_guide2 = rootView.findViewById(R.id.btn_guide2);
+
+        // 영상 인식 모델 실행 버튼
         btn_auto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i_auto = new Intent(getActivity(), Camera.class);
+                Intent i_auto = new Intent(getActivity(), CameraActivity.class);
                 startActivity(i_auto);
             }
         });
