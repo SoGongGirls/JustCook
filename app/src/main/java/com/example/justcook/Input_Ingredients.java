@@ -32,7 +32,7 @@ public class Input_Ingredients extends AppCompatActivity {
         // Adapter 생성
         adapter1 = new IngredientsAdapter();
 
-        // 리스트뷰 참조 및 Adapter 연결
+        // 리스트뷰 참조 및 Adapter 연결2
         IgListView1 = (ListView) findViewById(R.id.IgListView1);
         IgListView1.setAdapter(adapter1);
 

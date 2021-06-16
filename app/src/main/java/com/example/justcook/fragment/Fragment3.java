@@ -1,4 +1,4 @@
-package com.example.justcook;
+package com.example.justcook.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,11 @@ import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
+import com.example.justcook.MySQLiteOpenHelper;
+import com.example.justcook.R;
+import com.example.justcook.RecipeAdapter;
+import com.example.justcook.recipe;
 
 import org.w3c.dom.Text;
 

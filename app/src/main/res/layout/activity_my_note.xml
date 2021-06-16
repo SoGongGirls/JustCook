@@ -12,14 +12,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_gravity="center"
-        android:gravity="clip_horizontal"
-        android:layout_marginTop="30dp"
-        android:padding="15dp"
-        android:background="@drawable/next_clipping"
-        android:hint="나만의 레시피를 작성해보세요!"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#83F7F3F3">
+        </ListView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btnwrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@drawable/ic_create"
+            android:backgroundTint="@color/orange"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="20sp"
+            android:layout_marginRight="30sp"/>
+
+    </RelativeLayout>
 </LinearLayout>

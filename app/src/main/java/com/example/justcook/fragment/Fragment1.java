@@ -1,4 +1,4 @@
-package com.example.justcook;
+package com.example.justcook.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.justcook.CameraActivity;
+import com.example.justcook.CameraJson;
+import com.example.justcook.Input_Ingredients;
+import com.example.justcook.R;
+import com.example.justcook.auto_guide;
+import com.example.justcook.manual_guide;
 
 
 public class Fragment1 extends Fragment {

@@ -13,12 +13,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".CameraJson"></activity>
-        <activity android:name=".manual_guide"></activity>
-
-        <activity android:name=".CameraActivity"></activity>
-        <activity android:name=".DetectorActivity"></activity>
-
+        <activity android:name=".memo.UpdateActivity"></activity>
+        <activity android:name=".memo.InsertActivity" />
+        <activity android:name=".CameraJson" />
+        <activity android:name=".manual_guide" />
+        <activity android:name=".CameraActivity" />
+        <activity android:name=".DetectorActivity" />
         <activity android:name=".auto_guide" />
         <activity android:name=".recipe" />
         <activity android:name=".Camera" />
@@ -37,9 +37,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".fragment_3"/>
-        <activity android:name=".Fragment3"/>
-
+        <activity android:name=".fragment_3" />
+        <activity android:name=".fragment.Fragment3" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

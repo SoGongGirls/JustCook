@@ -1,4 +1,4 @@
-package com.example.justcook;
+package com.example.justcook.fragment;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.justcook.R;
 
 public class Fragment2 extends Fragment {
     @Nullable
