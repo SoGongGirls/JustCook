@@ -69,15 +69,24 @@ labelImg를 통해 이미지 각각에 대해 boundary-box를 지정해줌.
 :heavy_plus_sign: **-–load**는 이전 학습 가중치를 이어서 학습하겠다는 옵션으로 -1은 마지막 save를 불러옴.     
    
 :warning: 식재료 각각을 따로따로 학습시키는 것보다는 모든 학습 데이터를 한번에 학습 시키는 것이 학습 효과가 좋은듯.   
+<br/>   
    
+:bulb: 성공적으로 학습하고 있는 화면     
    
-**성공적으로 학습하고 있는 화면**
-![darkflow training](./images/0.jpg)
-
-
+![darkflow training](./images/0.JPG)   
+<br/>
+   
++ **Training 결과 확인**   
   
-
-  
-  
+`python flow --imgdir ../data/testset/ --model ./cfg/my-tiny-yolo.cfg --load -1 --batch 1 --threshold 0.5`   
+   
+:heavy_plus_sign: **--json** 옵션을 추가하면 탐지 결과를 json 파일로 저장함.   
+<br/>
+   
+:bulb: 성공적으로 인식된 사진들   
+   
+<img src="./images/Loaf_Bread12_thumb_l_6e0c212831126bc82380bec5b8496999.jpg" height="360"><img src="./images/egg14.jpg" height="360">   
+<img src="./images/tomato39.jpg" height="400"><img src="./images/2629B14F55AB61740E.jpg" height="400">   
+   
 </div>
 </details>
