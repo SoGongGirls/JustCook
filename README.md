@@ -85,8 +85,8 @@ labelImg를 통해 이미지 각각에 대해 boundary-box를 지정해줌.
    
 :bulb: 성공적으로 인식된 사진들   
    
-<img src="./images/Loaf_Bread12_thumb_l_6e0c212831126bc82380bec5b8496999.jpg" height="360"><img src="./images/egg14.jpg" height="360">   
-<img src="./images/tomato39.jpg" height="400"><img src="./images/2629B14F55AB61740E.jpg" height="400">   
+<img src="./images/Loaf_Bread12_thumb_l_6e0c212831126bc82380bec5b8496999.jpg" height="300"><img src="./images/egg14.jpg" height="300">   
+<img src="./images/tomato39.jpg" height="350"><img src="./images/2629B14F55AB61740E.jpg" height="350">   
    
 </div>
 </details>
