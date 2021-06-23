@@ -15,10 +15,10 @@ import java.io.InputStream;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
-    static String NAME = "recipe2.db";//"testdb.sqlite"; //to-do
+    static String NAME = "recipe3.db";//"testdb.sqlite"; //to-do
     static SQLiteDatabase.CursorFactory FACTORY = null;
     static String PACKEGE = "com.example.justcook"; //to-do
-    static String DB = "recipe2.db"; //To-do
+    static String DB = "recipe3.db"; //To-do
     static int VERSION  = 1;
 
     public MySQLiteOpenHelper(Context context) {

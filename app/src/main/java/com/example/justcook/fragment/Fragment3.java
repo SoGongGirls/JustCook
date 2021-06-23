@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -27,6 +28,8 @@ import android.widget.ListView;
 import com.example.justcook.MySQLiteOpenHelper;
 import com.example.justcook.R;
 import com.example.justcook.RecipeAdapter;
+import com.example.justcook.RecipeItem;
+import com.example.justcook.SearchRealRcode;
 import com.example.justcook.recipe;
 
 import org.w3c.dom.Text;
@@ -35,6 +38,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -43,6 +48,8 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 public class Fragment3 extends Fragment {
     SQLiteDatabase database;
     public static final String TAG ="in Fragment3.java" ;
+    ListView R_ListView;
+    RecipeAdapter adapter;
 
 
     @Nullable
@@ -52,19 +59,21 @@ public class Fragment3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_3, container, false);
         // 초기화, 참조 및 생성
-        final ListView R_ListView = (ListView) view.findViewById(R.id.R_ListView);
+        R_ListView = (ListView) view.findViewById(R.id.R_ListView);
         EditText r_search = (EditText) view.findViewById(R.id.r_search);
+        Button btn_search = (Button) view.findViewById((R.id.btn_search));
         openDB();
 
-        RecipeAdapter adapter = new RecipeAdapter();
+        adapter = new RecipeAdapter();
         // 리스트뷰 참조 및 Adapter 연결
         R_ListView.setAdapter(adapter);
-          // 리스트 아이템 추가
+//          // 리스트 아이템 추가
 //        adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.test_food),
-////                "토마토 달걀 볶음", ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
-        //데이터 select
+//                "토마토 달걀 볶음", ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
+
+        //데이터 select(맨처음 초기화)
         if (database != null) {
-            String tableName = "recipe_info_ver4";
+            String tableName = "recipe_info";
             String query = "select name, foodtypename from " + tableName ;
             Cursor cursor = database.rawQuery(query, null);
             Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
@@ -72,7 +81,7 @@ public class Fragment3 extends Fragment {
             for (int i = 0; i < cursor.getCount(); i++) {
                 cursor.moveToNext();
                 String name = cursor.getString(0);
-                String foodtypename = cursor.getString(1);
+                //String foodtypename = cursor.getString(1);
 
                 adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.test_food),
                 name, ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
@@ -83,6 +92,14 @@ public class Fragment3 extends Fragment {
         }
         R_ListView.setAdapter(adapter);
 
+        //btn_search(검색버튼 클릭)
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                ArrayList<String> optList = new ArrayList<String>(Arrays.asList("고구마", "소금"));
+                searchData(optList);
+            }
+        });
 
         // EditText 변경 이벤트 처리
         r_search.addTextChangedListener(new TextWatcher() {
@@ -104,7 +121,6 @@ public class Fragment3 extends Fragment {
             }
 
         });
-
 
         // 레시피 상세 보기
         R_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -154,24 +170,64 @@ public class Fragment3 extends Fragment {
         }
     }
 
-//    public void selectData(String sql) {
-//        Log.v(TAG, "selectData() 호출됨.");
-//        if (database != null) {
-//            String tableName = "recipe_info_ver4";
-//            Cursor cursor = database.rawQuery(sql, null);
-//            Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
-//
-//            for (int i = 0; i < cursor.getCount(); i++) {
-//                cursor.moveToNext();
-//                String name = cursor.getString(0);
-//                String foodtypename = cursor.getString(1);
-//
-//                recipeAdapter.addItem(new RecipeItem(name, foodtypename, R.drawable.cd1));
-//            }
-//            gridView.setAdapter(recipeAdapter);
-//            cursor.close();
-//        } else {
-//            Log.e(TAG, "selectData() db없음.");
-//        }
-//    }
+    public void searchData(List optList){
+        Log.v(TAG, "searchData() 호출됨.");
+        if (database != null) {
+            ArrayList<ArrayList> curList = new ArrayList<ArrayList>(); //[토마토rcode리스트, 계란rcode리스트]
+            String IngredientTable= "recipe_ingredient";
+
+            //재료별 rcode 저장
+            for(int i=0; i<optList.size(); i++){
+                String query = "select rcode from "+IngredientTable+" where search_name=\""+optList.get(i)+"\"";
+                ArrayList<Integer> rcode = new ArrayList<Integer>();
+                try {
+                    Cursor cursor = database.rawQuery(query, null);
+                    Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
+                    cursor.moveToFirst();
+                    int j = 0;
+                    if (cursor.getCount() > 0) {
+                        for (j = 0; j < cursor.getCount(); j++) {
+                            rcode.add(cursor.getInt(0));
+                            cursor.moveToNext();
+                        }
+                        curList.add(rcode);
+                        cursor.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Log.e("SearchData", e.getMessage());
+                }
+            }
+
+            //일치하는 rcode만 찾기
+            Log.v(TAG, "일치하는 rcode 찾기");
+            ArrayList<Integer> realRcode = new ArrayList<>();
+            realRcode = curList.remove(0);
+            realRcode = SearchRealRcode.searchVal(realRcode, curList);
+
+            //real rcode 조회
+            for(int k = 0; k < realRcode.size(); k++){
+                //for(int k = 0; k < 14; k++){
+                Log.v(TAG, String.valueOf(realRcode.size()));
+                Log.v(TAG, "real rcode 조회");
+                String q = "select name, foodtypename from recipe_info where rcode="+realRcode.get(k);
+                //String q = "select name, foodtypename from recipe_info where rcode="+curList.get(0).get(k);
+                Cursor cursor = database.rawQuery(q, null);
+                Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
+                cursor.moveToNext();
+                String name = cursor.getString(0);
+                //String foodtypename = cursor.getString(1);
+                adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.test_food),
+                        name, ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
+                cursor.close();
+            }
+            R_ListView.setAdapter(adapter);
+            Log.v(TAG, "gridview 적용");
+
+        } else {
+            Log.e(TAG, "searchData() db없음.");
+        }
+        Log.v(TAG, "searchDATA종료");
+    }
+
 }

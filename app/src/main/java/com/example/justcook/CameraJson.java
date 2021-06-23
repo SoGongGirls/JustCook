@@ -168,23 +168,4 @@ public class CameraJson extends AppCompatActivity {
         tv_ing_list.setText(temp);
     }
 
-//    private String getJsonString(){
-//        //json 읽어오기
-//        String json = "";
-//        try{
-//            InputStream is = getAssets().open("tomato87.json");
-//            int fileSize = is.available();
-//            byte[] buffer = new byte[fileSize];
-//            is.read(buffer);
-//            is.close();
-//
-//            json = new String(buffer, "UTF-8");
-//        }catch(IOException ex){
-//            ex.printStackTrace();
-//        }
-//
-//        return json;
-//    }
-
-
 }
