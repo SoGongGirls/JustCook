@@ -36,7 +36,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     private static final int TF_OD_API_INPUT_SIZE = 300;
     private static final boolean TF_OD_API_IS_QUANTIZED = false;
     private static final String TF_OD_API_MODEL_FILE = "final_model.tflite";
-    private static final String TF_OD_API_LABELS_FILE = "labelmap.txt";
+    private static final String TF_OD_API_LABELS_FILE = "label.txt";
     private static final DetectorMode MODE = DetectorMode.TF_OD_API;
     // Minimum detection confidence to track a detection.
     private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.5f;
@@ -161,7 +161,13 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                     public void run() {
                         LOGGER.i("Running detection on image " + currTimestamp);
                         final long startTime = SystemClock.uptimeMillis();
-                        final List<Detector.Recognition> results = detector.recognizeImage(croppedBitmap);
+                        final List<Detector.Recognition> results;
+                        if(detector != null) {
+                            results = detector.recognizeImage(croppedBitmap);
+                        }
+                        else {
+                            results = null;
+                        }
                         lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
 
                         cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
@@ -181,15 +187,17 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                         final List<Detector.Recognition> mappedRecognitions =
                                 new ArrayList<Detector.Recognition>();
 
-                        for (final Detector.Recognition result : results) {
-                            final RectF location = result.getLocation();
-                            if (location != null && result.getConfidence() >= minimumConfidence) {
-                                canvas.drawRect(location, paint);
+                        if(results != null) {
+                            for (final Detector.Recognition result : results) {
+                                final RectF location = result.getLocation();
+                                if (location != null && result.getConfidence() >= minimumConfidence) {
+                                    canvas.drawRect(location, paint);
 
-                                cropToFrameTransform.mapRect(location);
+                                    cropToFrameTransform.mapRect(location);
 
-                                result.setLocation(location);
-                                mappedRecognitions.add(result);
+                                    result.setLocation(location);
+                                    mappedRecognitions.add(result);
+                                }
                             }
                         }
 

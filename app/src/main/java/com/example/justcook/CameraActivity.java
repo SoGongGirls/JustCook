@@ -79,7 +79,9 @@ public abstract class CameraActivity extends AppCompatActivity
         setContentView(R.layout.tfe_od_activity_camera);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
 
         if (hasPermission()) {
             setFragment();

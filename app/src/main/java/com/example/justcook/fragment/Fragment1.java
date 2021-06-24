@@ -15,6 +15,7 @@ import android.widget.Button;
 
 import com.example.justcook.CameraActivity;
 import com.example.justcook.CameraJson;
+import com.example.justcook.DetectorActivity;
 import com.example.justcook.Input_Ingredients;
 import com.example.justcook.R;
 import com.example.justcook.auto_guide;
@@ -48,7 +49,7 @@ public class Fragment1 extends Fragment {
         btn_auto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i_auto = new Intent(getActivity(), CameraActivity.class);
+                Intent i_auto = new Intent(getActivity(), DetectorActivity.class);
                 startActivity(i_auto);
             }
         });

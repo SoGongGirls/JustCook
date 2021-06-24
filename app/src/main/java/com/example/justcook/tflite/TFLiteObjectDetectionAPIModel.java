@@ -25,19 +25,6 @@ import java.util.Map;
 import org.tensorflow.lite.Interpreter;
 import org.tensorflow.lite.support.metadata.MetadataExtractor;
 
-/**
- * Wrapper for frozen detection models trained using the Tensorflow Object Detection API: -
- * https://github.com/tensorflow/models/tree/master/research/object_detection where you can find the
- * training code.
- *
- * <p>To use pretrained models in the API or convert to TF Lite models, please see docs for details:
- * -
- * https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf1_detection_zoo.md
- * -
- * https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
- * -
- * https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/running_on_mobile_tensorflowlite.md#running-our-model-on-android
- */
 public class TFLiteObjectDetectionAPIModel implements Detector {
     private static final String TAG = "TFLiteObjectDetectionAPIModelWithInterpreter";
 
@@ -150,12 +137,11 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
 
     @Override
     public List<Recognition> recognizeImage(final Bitmap bitmap) {
-        // Log this method so that it can be analyzed with systrace.
+        // systrace로 분석할 수 있도록 이 메소드를 기록함
         Trace.beginSection("recognizeImage");
 
         Trace.beginSection("preprocessBitmap");
-        // Preprocess the image data from 0-255 int to normalized float based
-        // on the provided parameters.
+        // 제공된 매개변수 기준으로 0-255 int의 영상 데이터를 정규화된 float 기반으로 사전처리함
         bitmap.getPixels(intValues, 0, bitmap.getWidth(), 0, 0, bitmap.getWidth(), bitmap.getHeight());
 
         imgData.rewind();
@@ -163,20 +149,20 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
             for (int j = 0; j < inputSize; ++j) {
                 int pixelValue = intValues[i * inputSize + j];
                 if (isModelQuantized) {
-                    // Quantized model
+                    // 양자화된 모델
                     imgData.put((byte) ((pixelValue >> 16) & 0xFF));
                     imgData.put((byte) ((pixelValue >> 8) & 0xFF));
                     imgData.put((byte) (pixelValue & 0xFF));
-                } else { // Float model
+                } else { // Float 모델
                     imgData.putFloat((((pixelValue >> 16) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
                     imgData.putFloat((((pixelValue >> 8) & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
                     imgData.putFloat(((pixelValue & 0xFF) - IMAGE_MEAN) / IMAGE_STD);
                 }
             }
         }
-        Trace.endSection(); // preprocessBitmap
+        Trace.endSection(); // 비트맵 전처리
 
-        // Copy the input data into TensorFlow.
+        // 입력데이터를 TensorFlow로 복사
         Trace.beginSection("feed");
         outputLocations = new float[1][NUM_DETECTIONS][4];
         outputClasses = new float[1][NUM_DETECTIONS];
@@ -193,16 +179,16 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
 
         // Run the inference call.
         Trace.beginSection("run");
-        tfLite.runForMultipleInputsOutputs(inputArray, outputMap);
+        if(inputArray != null) {
+            tfLite.runForMultipleInputsOutputs(inputArray, outputMap);
+        }
         Trace.endSection();
 
-        // Show the best detections.
-        // after scaling them back to the input size.
-        // You need to use the number of detections from the output and not the NUM_DETECTONS variable
-        // declared on top
-        // because on some models, they don't always output the same total number of detections
-        // For example, your model's NUM_DETECTIONS = 20, but sometimes it only outputs 16 predictions
-        // If you don't use the output's numDetections, you'll get nonsensical data
+        // 입력 크기로 축소한 후 최상의 탐지를 표시함
+        // 일부 모델에서는, 동일한 총 output 탐지 수를 사용하지 않기 때문에,
+        // NUM_DETECTONS 변수가 아닌 상단에 선언된 output 탐지 수를 사용해야 함
+        // 예를 들어, 모델의 NUM_DETECTIONS = 20이지만, 종종 16개의 예측 결과만 출력함
+        // output의 numDetections을 사용하지 않으면, 비논리적인 데이터가 표시됨
         int numDetectionsOutput =
                 min(
                         NUM_DETECTIONS,
@@ -217,9 +203,11 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
                             outputLocations[0][i][3] * inputSize,
                             outputLocations[0][i][2] * inputSize);
 
-            recognitions.add(
-                    new Recognition(
-                            "" + i, labels.get((int) outputClasses[0][i]), outputScores[0][i], detection));
+            if(labels.size() != 0) {
+                recognitions.add(
+                        new Recognition(
+                                "" + i, labels.get((int) outputClasses[0][i]), outputScores[0][i], detection));
+            }
         }
         Trace.endSection(); // "recognizeImage"
         return recognitions;

@@ -1,0 +1,4 @@
+bread
+tomato
+sausage
+egg

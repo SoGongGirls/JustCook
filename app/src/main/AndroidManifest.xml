@@ -21,7 +21,6 @@
         <activity android:name=".DetectorActivity" />
         <activity android:name=".auto_guide" />
         <activity android:name=".recipe" />
-        <activity android:name=".Camera" />
         <activity android:name=".Input_Ingredients" />
         <activity android:name=".my_memo" />
         <activity android:name=".my_note" />
