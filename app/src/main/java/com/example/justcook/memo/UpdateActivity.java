@@ -17,6 +17,10 @@ import android.widget.TextView;
 import com.example.justcook.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class UpdateActivity extends AppCompatActivity {
 
     View btn_back;
@@ -48,12 +52,16 @@ public class UpdateActivity extends AppCompatActivity {
 
         helper=new MemoDB(this);
         db=helper.getWritableDatabase();
+
+
         Cursor cursor=db.rawQuery("select * from memo where _id="+_id, null);
         if(cursor.moveToNext()){
             TextView txtwdate=findViewById(R.id.txtwdate);
-            txtwdate.setText("작성일:"+cursor.getString(2));
+            txtwdate.setText("작성일:"+cursor.getString(3));
+            TextView tlecontent=findViewById(R.id.tlecontent);
+            tlecontent.setText(cursor.getString(1));
             TextView edtcontent=findViewById(R.id.edtcontent);
-            edtcontent.setText("작성내용:"+cursor.getString(1));
+            edtcontent.setText(cursor.getString(2));
         }
 
         FloatingActionButton btnsave=findViewById(R.id.btnsave);
@@ -65,11 +73,27 @@ public class UpdateActivity extends AppCompatActivity {
                 box.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        EditText tlecontent=findViewById(R.id.tlecontent);
+                        String strtitle=tlecontent.getText().toString();
                         EditText edtcontent=findViewById(R.id.edtcontent);
                         String strcontent=edtcontent.getText().toString();
-                        String sql="update memo set content='" + strcontent + "' ";
-                        sql += " where _id=" +_id;
-                        db.execSQL(sql);
+
+                        //현재날짜 저장
+                        Date now=new Date();
+                        SimpleDateFormat sdf=new SimpleDateFormat("yyyy/MM/dd hh:mm ss");
+                        //시간 조정
+                        sdf.setTimeZone(TimeZone.getTimeZone("Asia/Seoul"));
+                        String strnow=sdf.format(now);
+
+                        String sql1="update memo set content='" + strcontent + "' ";
+                        sql1 += " where _id=" +_id;
+                        String sql2="update memo set title='" + strtitle + "' ";
+                        sql2 += " where _id=" +_id;
+                        String sql3="update memo set wdate='" + strnow + "' ";
+                        sql3 += " where _id=" +_id;
+                        db.execSQL(sql1);
+                        db.execSQL(sql2);
+                        db.execSQL(sql3);
                         finish();
                     }
                 });

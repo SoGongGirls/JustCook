@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".memo.InsertActivity"
-    android:background="#f0f0f0">
+    android:background="#fff">
 
     <include
         layout="@layout/toolbar2"
@@ -25,17 +25,32 @@
         android:text="작성일"
         android:padding="10sp"
         android:textSize="15sp"
-        android:textColor="#808080"/>
-    <EditText
-        android:layout_below="@id/txtwdate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:hint="메모내용을 입력하세요"
-        android:gravity="top"
-        android:padding="10sp"
-        android:textColorHint="#000"
-        android:id="@+id/edtcontent"/>
+        android:textColor="@color/dark_gray"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@id/txtwdate">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="제목을 입력하세요"
+                android:gravity="top"
+                android:padding="20dp"
+                android:textColorHint="@color/dark_gray"
+                android:id="@+id/tlecontent"/>
+
+            <EditText
+                android:layout_below="@id/txtwdate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="메모내용을 입력하세요"
+                android:gravity="top"
+                android:padding="10sp"
+                android:id="@+id/edtcontent"/>
+        </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnsave"
         android:layout_width="wrap_content"
