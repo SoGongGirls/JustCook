@@ -1,7 +1,6 @@
 package com.example.justcook;
 
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -13,7 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toolbar;
+
+import com.example.justcook.itemAdapter.RecipeAdapter;
+import com.example.justcook.itemAdapter.RecipeItem;
 
 public class my_bookmark extends AppCompatActivity {
 
@@ -32,14 +33,13 @@ public class my_bookmark extends AppCompatActivity {
         B_ListView = findViewById(R.id.B_ListView);
         bar_title.setText("북마크");
 
-        RecipeAdapter adapter = new RecipeAdapter();
+        RecipeAdapter adapter = new RecipeAdapter(getApplicationContext());
 
         // 리스트뷰 참조 및 Adapter 연결
         B_ListView.setAdapter(adapter);
 
         // 리스트 아이템 추가
-        adapter.addItem(ContextCompat.getDrawable(this, R.drawable.test_food),
-                "토마토 달걀 볶음", ContextCompat.getDrawable(this, R.drawable.bookmark_none));
+        adapter.addItem(new RecipeItem("토마토달걀볶음", "foodtypename", -1, null ));
         B_ListView.setAdapter((ListAdapter) adapter);
 
 

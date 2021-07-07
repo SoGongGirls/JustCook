@@ -63,6 +63,7 @@
                 android:layout_marginRight="20dp"
                 app:cardCornerRadius="20dp">
                 <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/cvFood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/test_food" />
@@ -74,12 +75,20 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="토마토 달걀 볶음"
+                    android:text="음식이름"
                     android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="20dp" />
+                <TextView
+                    android:id="@+id/tvSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="음식설명입니다"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -90,58 +99,167 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="유형분류 : 퓨전"
+                        android:text="유형분류 : "
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ex퓨전"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="음식분류 : 밥"
+                        android:text="음식분류 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvFoodtype"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ex밥"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
 
                 </LinearLayout>
-
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="조리시간 : 30분"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
 
-                <TextView
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="조리시간 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="분"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="분량 : 1인분"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="분량 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvPerson"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="인분"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
 
-                <TextView
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="칼로리 : 250Kcal"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="칼로리 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvCalorie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="250"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="kcal"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
 
-                <TextView
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="난이도 : 초보환영"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:textSize="17dp" />
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="난이도 : "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="초보환영"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="베이스? : "
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                    <TextView
+                        android:id="@+id/tvBase"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="어류"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="15dp" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -215,37 +333,11 @@
                 android:textStyle="bold"
                 android:textSize="20dp" />
 
-            <TextView
+            <ListView
+                android:id="@+id/listview_process"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="1. 토마토, 양파, 마늘, 생강을 손질해준다."
-                android:textStyle="bold"
-                android:textSize="18dp" />
+                android:layout_height="wrap_content"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="2. 계란 2개를 풀고 소금 간을 해준 뒤 스크램블 에그를 만들어준다."
-                android:textStyle="bold"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="3. 팬에 식용유를 두르고 손질한 양파, 생강, 토마토를 볶다 설탕과 닭고기를 넣고 볶아준다."
-                android:textStyle="bold"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="4. 아까 만든 스크램블 에그를 넣고 참기름을 살짝 둘러 준 뒤 한 번 더 볶으면 완성!!"
-                android:textStyle="bold"
-                android:textSize="18dp" />
 
         </LinearLayout>
 

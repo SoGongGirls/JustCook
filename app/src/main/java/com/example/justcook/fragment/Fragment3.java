@@ -1,8 +1,6 @@
 package com.example.justcook.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,24 +18,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.justcook.MySQLiteOpenHelper;
 import com.example.justcook.R;
-import com.example.justcook.RecipeAdapter;
-import com.example.justcook.RecipeItem;
 import com.example.justcook.SearchRealRcode;
+import com.example.justcook.itemAdapter.RecipeAdapter;
+import com.example.justcook.itemAdapter.RecipeItem;
 import com.example.justcook.recipe;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -64,27 +56,24 @@ public class Fragment3 extends Fragment {
         Button btn_search = (Button) view.findViewById((R.id.btn_search));
         openDB();
 
-        adapter = new RecipeAdapter();
+        adapter = new RecipeAdapter(getActivity());
         // 리스트뷰 참조 및 Adapter 연결
-        R_ListView.setAdapter(adapter);
-//          // 리스트 아이템 추가
-//        adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.test_food),
-//                "토마토 달걀 볶음", ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
 
-        //데이터 select(맨처음 초기화)
+        //맨처음 초기화 데이터 보여주기(select)
         if (database != null) {
             String tableName = "recipe_info";
-            String query = "select name, foodtypename from " + tableName ;
+            String query = "select name, foodtypename, rcode, image_url from "+tableName ;
             Cursor cursor = database.rawQuery(query, null);
             Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
 
             for (int i = 0; i < cursor.getCount(); i++) {
                 cursor.moveToNext();
                 String name = cursor.getString(0);
-                //String foodtypename = cursor.getString(1);
+                String foodtypename = cursor.getString(1);
+                int rcode = cursor.getInt(2);
+                String img_url = cursor.getString(3);
 
-                adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.test_food),
-                name, ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
+                adapter.addItem(new RecipeItem(name, foodtypename, rcode, img_url ));
             }
             cursor.close();
         } else {
@@ -127,6 +116,10 @@ public class Fragment3 extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent i_recipe = new Intent(getActivity(), recipe.class);
+                RecipeItem item = (RecipeItem) adapter.getItem(i);
+                String rcode = String.valueOf(item.getRcode());
+                Log.v(TAG, "rcode는" + rcode);
+                i_recipe.putExtra("rcode", rcode);
                 startActivity(i_recipe);
             }
         });
@@ -172,6 +165,11 @@ public class Fragment3 extends Fragment {
 
     public void searchData(List optList){
         Log.v(TAG, "searchData() 호출됨.");
+
+        if (adapter.getCount() != 0){
+            adapter.removeItemAll();
+        }
+
         if (database != null) {
             ArrayList<ArrayList> curList = new ArrayList<ArrayList>(); //[토마토rcode리스트, 계란rcode리스트]
             String IngredientTable= "recipe_ingredient";
@@ -210,15 +208,17 @@ public class Fragment3 extends Fragment {
                 //for(int k = 0; k < 14; k++){
                 Log.v(TAG, String.valueOf(realRcode.size()));
                 Log.v(TAG, "real rcode 조회");
-                String q = "select name, foodtypename from recipe_info where rcode="+realRcode.get(k);
+                String q = "select name, foodtypename, rcode, image_url from recipe_info where rcode="+realRcode.get(k);
                 //String q = "select name, foodtypename from recipe_info where rcode="+curList.get(0).get(k);
                 Cursor cursor = database.rawQuery(q, null);
                 Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
                 cursor.moveToNext();
                 String name = cursor.getString(0);
-                //String foodtypename = cursor.getString(1);
-                adapter.addItem(ContextCompat.getDrawable(getActivity(), R.drawable.test_food),
-                        name, ContextCompat.getDrawable(getActivity(), R.drawable.bookmark_none));
+                String foodtypename = cursor.getString(1);
+                int rcode = cursor.getInt(2);
+                String img_url = cursor.getString(3);
+                adapter.addItem(new RecipeItem(name, foodtypename, rcode, img_url ));
+                //recipeAdapter.addItem(new RecipeItem(name, foodtypename, R.drawable.cd1));
                 cursor.close();
             }
             R_ListView.setAdapter(adapter);
