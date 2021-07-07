@@ -39,7 +39,7 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 public class Fragment3 extends Fragment {
     SQLiteDatabase database;
-    public static final String TAG ="in Fragment3.java" ;
+    public static final String TAG ="태그 Fragment3.java" ;
     ListView R_ListView;
     RecipeAdapter adapter;
 
@@ -85,7 +85,8 @@ public class Fragment3 extends Fragment {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                ArrayList<String> optList = new ArrayList<String>(Arrays.asList("고구마", "소금"));
+                String opt = r_search.getText().toString();
+                ArrayList<String>optList= new ArrayList<String>(Arrays.asList(opt.split(" ")));
                 searchData(optList);
             }
         });
@@ -166,9 +167,7 @@ public class Fragment3 extends Fragment {
     public void searchData(List optList){
         Log.v(TAG, "searchData() 호출됨.");
 
-        if (adapter.getCount() != 0){
-            adapter.removeItemAll();
-        }
+        adapter.removeItemAll();
 
         if (database != null) {
             ArrayList<ArrayList> curList = new ArrayList<ArrayList>(); //[토마토rcode리스트, 계란rcode리스트]
@@ -218,9 +217,9 @@ public class Fragment3 extends Fragment {
                 int rcode = cursor.getInt(2);
                 String img_url = cursor.getString(3);
                 adapter.addItem(new RecipeItem(name, foodtypename, rcode, img_url ));
-                //recipeAdapter.addItem(new RecipeItem(name, foodtypename, R.drawable.cd1));
                 cursor.close();
             }
+            adapter.notifyDataSetChanged();
             R_ListView.setAdapter(adapter);
             Log.v(TAG, "gridview 적용");
 

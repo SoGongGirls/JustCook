@@ -14,7 +14,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,9 +24,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.justcook.itemAdapter.IngredientAdapter;
+import com.example.justcook.itemAdapter.Ingredientitem;
 import com.example.justcook.itemAdapter.ProcessAdapter;
 import com.example.justcook.itemAdapter.Processitem;
 
@@ -34,10 +38,8 @@ import java.util.ArrayList;
 public class recipe extends AppCompatActivity {
     String TAG = "recipe상세화면";
     SQLiteDatabase db;
-    IngredientAdapter adapterING;
     ProcessAdapter apdaterPro;
     String rcode;
-    ListView lvIngredient;
     ListView lvProcess;
 
     @Override
@@ -48,12 +50,19 @@ public class recipe extends AppCompatActivity {
         ListView myListView = findViewById(R.id.myListView);
         View btn_back = findViewById(R.id.btn_back);
 
-        //lvIngredient = (ListView) findViewById(R.id.listview_ingredient);
+        LinearLayout LayoutSrc = (LinearLayout) findViewById(R.id.LayoutSrc);
+        LinearLayout LayoutSub = (LinearLayout) findViewById(R.id.LayoutSub);
+
         lvProcess = (ListView) findViewById(R.id.listview_process);
+        GridView IngMain = (GridView) findViewById(R.id.gv_ing_main);
+        GridView IngSrc = (GridView) findViewById(R.id.gv_ing_src);
+        GridView IngSub = (GridView) findViewById(R.id.gv_ing_sub);
 
         Intent intent = getIntent();
         rcode = intent.getStringExtra("rcode");
-        //adapterING = new IngredientAdapter(getApplicationContext());
+        IngredientAdapter adapterING_Main = new IngredientAdapter(getApplicationContext());
+        IngredientAdapter adapterING_Src = new IngredientAdapter(getApplicationContext());
+        IngredientAdapter adapterING_Sub = new IngredientAdapter(getApplicationContext());
         apdaterPro = new ProcessAdapter(getApplicationContext());
 
         TextView tvName = (TextView)findViewById(R.id.tvName);
@@ -108,6 +117,9 @@ public class recipe extends AppCompatActivity {
         }
 
         loadProcessData(); //과정list값 로드
+        loadIngredientData(0, adapterING_Main, IngMain, null ); //main
+        loadIngredientData(1, adapterING_Src, IngSrc, LayoutSrc); //src
+        loadIngredientData(2, adapterING_Sub, IngSub, LayoutSub);//sub
 
         // back 버튼 구현
         btn_back.setOnClickListener(new View.OnClickListener() {
@@ -208,6 +220,44 @@ public class recipe extends AppCompatActivity {
             }
             lvProcess.setAdapter(apdaterPro);
             cursor.close();
+        } else {
+            Log.e(TAG, "selectData() db없음.");
+        }
+
+    }
+    public void loadIngredientData(int num, IngredientAdapter adpater, GridView GV, LinearLayout Layout){
+        Log.v(TAG, "loadIngredientData() 호출됨.");
+        String TCN=null;
+        if (num ==0){
+            TCN = "주재료";
+        }else if(num ==1){
+            TCN = "양념";
+        }else if(num ==2){
+            TCN = "부재료";
+        }
+
+        if (db != null) {
+            String tableName2 = "recipe_ingredient";
+            //String sql = "select name, quantity,type_code_name from "+tableName2+" where rcode="+rcode;
+            String sql = "select name, quantity,type_code_name from "+tableName2+" where rcode="+rcode+" and type_code_name=\'"+TCN+"\'";
+            Cursor cursor = db.rawQuery(sql, null);
+            Log.v(TAG, "조회된 데이터 수 : " + cursor.getCount());
+
+            if (cursor.getCount() == 0){
+                Layout.setVisibility(View.GONE);
+            }else{
+                for (int i = 0; i < cursor.getCount(); i++) {
+                    cursor.moveToNext();
+                    String name = cursor.getString(0);
+                    String quantity = cursor.getString(1);
+                    String type_code_name = cursor.getString(2);
+
+                    adpater.addItem(new Ingredientitem(name, quantity, type_code_name));
+                }
+                GV.setAdapter(adpater);
+                cursor.close();
+            }
+
         } else {
             Log.e(TAG, "selectData() db없음.");
         }
