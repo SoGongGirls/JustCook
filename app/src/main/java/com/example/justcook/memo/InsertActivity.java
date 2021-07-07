@@ -50,6 +50,9 @@ public class InsertActivity extends AppCompatActivity {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText tlecontent = findViewById(R.id.tlecontent);
+                String strtitle = tlecontent.getText().toString();
+
                 EditText edtcontent=findViewById(R.id.edtcontent);
                 String strcontent=edtcontent.getText().toString();
 
@@ -62,7 +65,8 @@ public class InsertActivity extends AppCompatActivity {
                 String strnow=sdf.format(now);
 
 
-                String sql="insert into memo(content,wdate) values(";
+                String sql="insert into memo(title,content,wdate) values(";
+                sql += "'" + strtitle + "',";
                 sql += "'" + strcontent + "',";
                 sql += "'" + strnow + "')";
                 db.execSQL(sql);

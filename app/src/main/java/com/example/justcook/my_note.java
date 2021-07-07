@@ -24,6 +24,7 @@ import com.example.justcook.memo.MemoDB;
 import com.example.justcook.memo.UpdateActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
 
 
 public class my_note extends AppCompatActivity {
@@ -69,7 +70,7 @@ public class my_note extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //activity이동
-                Intent i_insert=new Intent(my_note.this, InsertActivity.class);
+                Intent i_insert=new Intent(my_note.this,InsertActivity.class);
                 startActivity(i_insert);
             }
         });
@@ -92,7 +93,7 @@ public class my_note extends AppCompatActivity {
             TextView txtcontent=view.findViewById(R.id.txtcontent);
             txtcontent.setText(cursor.getString(1));
             TextView txtwdate=view.findViewById(R.id.txtwdate);
-            txtwdate.setText(cursor.getString(2));
+            txtwdate.setText(cursor.getString(3));
 
             //ListView에 item을 생성했을때
             ImageView btndel=view.findViewById(R.id.btndel);
@@ -120,11 +121,12 @@ public class my_note extends AppCompatActivity {
                     box.show();
                 }
             });
-            ImageView btnupdate=view.findViewById(R.id.btnupdate);
-            btnupdate.setOnClickListener(new View.OnClickListener() {
+
+            View ListNote=view.findViewById(R.id.ListNote);
+            ListNote.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(my_note.this, UpdateActivity.class);
+                    Intent intent=new Intent(my_note.this,UpdateActivity.class);
                     intent.putExtra("_id", _id);
                     startActivity(intent);
                 }
