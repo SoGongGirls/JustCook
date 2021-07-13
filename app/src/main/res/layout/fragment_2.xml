@@ -84,8 +84,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
+            <EditText
+                android:id="@+id/edit_ing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:hint="재료를 입력해주세요"/>
 
             <Button
+                android:id="@+id/btn_recipe_recommend"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"

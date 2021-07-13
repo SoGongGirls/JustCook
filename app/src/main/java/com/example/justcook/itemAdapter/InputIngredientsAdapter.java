@@ -1,32 +1,32 @@
-package com.example.justcook;
+package com.example.justcook.itemAdapter;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.CheckedTextView;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.justcook.R;
+
 import java.util.ArrayList;
 
-public class IngredientsAdapter extends BaseAdapter implements Filterable {
+public class InputIngredientsAdapter extends BaseAdapter implements Filterable {
 
     Filter listFilter ;
 
     // Adapter에 추가된 데이터를 저장하기 위한 ArrayList. (원본 데이터 리스트)
-    private ArrayList<IngredientsItem> ingredientsList = new ArrayList<IngredientsItem>();
+    private ArrayList<InputIngredientsItem> ingredientsList = new ArrayList<InputIngredientsItem>();
     // 필터링된 결과 데이터를 저장하기 위한 ArrayList. 최초에는 전체 리스트 보유.
-    private ArrayList<IngredientsItem> filteredItemList = ingredientsList;
+    private ArrayList<InputIngredientsItem> filteredItemList = ingredientsList;
 
 
     // IngredientsAdapter의 생성자
-    public IngredientsAdapter() {
+    public InputIngredientsAdapter() {
 
     }
 
@@ -50,7 +50,7 @@ public class IngredientsAdapter extends BaseAdapter implements Filterable {
 
     // 아이템 데이터 추가를 위한 함수. 개발자가 원하는대로 작성 가능.
     public void addItem(Drawable img, String name, Drawable icon) {
-        IngredientsItem item = new IngredientsItem();
+        InputIngredientsItem item = new InputIngredientsItem();
 
         item.setI_img(img);
         item.setI_name(name);
@@ -77,7 +77,7 @@ public class IngredientsAdapter extends BaseAdapter implements Filterable {
         ImageView i_icon = (ImageView) view.findViewById(R.id.i_icon);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
-        IngredientsItem listViewItem = filteredItemList.get(position);
+        InputIngredientsItem listViewItem = filteredItemList.get(position);
 
         // 아이템 내 각 위젯에 데이터 반영
         i_img.setImageDrawable(listViewItem.getI_img());
@@ -107,9 +107,9 @@ public class IngredientsAdapter extends BaseAdapter implements Filterable {
                 results.values = ingredientsList ;
                 results.count = ingredientsList.size() ;
             } else {
-                ArrayList<IngredientsItem> itemList = new ArrayList<IngredientsItem>() ;
+                ArrayList<InputIngredientsItem> itemList = new ArrayList<InputIngredientsItem>() ;
 
-                for (IngredientsItem item : ingredientsList) {
+                for (InputIngredientsItem item : ingredientsList) {
                     if (item.getI_name().contains(constraint.toString()))
                     {
                         itemList.add(item) ;
@@ -126,7 +126,7 @@ public class IngredientsAdapter extends BaseAdapter implements Filterable {
         protected void publishResults(CharSequence constraint, FilterResults results) {
 
             // update listview by filtered data list.
-            filteredItemList = (ArrayList<IngredientsItem>) results.values ;
+            filteredItemList = (ArrayList<InputIngredientsItem>) results.values ;
 
             // notify
             if (results.count > 0) {

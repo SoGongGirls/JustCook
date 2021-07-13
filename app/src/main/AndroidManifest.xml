@@ -14,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".Recommend"></activity>
         <activity android:name=".memo.UpdateActivity"></activity>
         <activity android:name=".memo.InsertActivity" />
         <activity android:name=".CameraJson" />
@@ -37,8 +38,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".fragment_3" />
-        <activity android:name=".fragment.Fragment3" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

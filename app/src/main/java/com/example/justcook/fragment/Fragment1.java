@@ -69,15 +69,6 @@ public class Fragment1 extends Fragment {
                 startActivity(i_json);
             }
         });
-        //db연동 확인용 추후 삭제
-        /*btn_rinfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i_rinfo = new Intent(getActivity(), Fragment3.class);
-                startActivity(i_rinfo);
-            }
-        });*/
-
 
         btn_guide1.setOnClickListener(new View.OnClickListener() {
             @Override

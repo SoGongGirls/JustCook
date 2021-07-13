@@ -1,8 +1,8 @@
-package com.example.justcook;
+package com.example.justcook.itemAdapter;
 
 import android.graphics.drawable.Drawable;
 
-public class IngredientsItem {
+public class InputIngredientsItem {
     // 얻어올 정보들을 저장한 클래스
     Drawable i_img;  // 재료 이미지
     String i_name;  // 재료 이름
