@@ -46,6 +46,13 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/cvFood"
+            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:src="@drawable/test_food" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,22 +63,23 @@
             android:paddingRight="20dp"
             android:background="@color/deep_red">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                app:cardCornerRadius="20dp">
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/cvFood"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/test_food" />
-            </androidx.cardview.widget.CardView>
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                app:cardCornerRadius="20dp">-->
+<!--                <com.makeramen.roundedimageview.RoundedImageView-->
+<!--                    android:id="@+id/cvFood"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:src="@drawable/test_food" />-->
+<!--            </androidx.cardview.widget.CardView>-->
+
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
@@ -93,154 +101,194 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="유형분류 : "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/tvType"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="유형분류 : "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tvType"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ex퓨전"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ex퓨전"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="음식분류 : "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tvFoodtype"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="ex밥"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="음식분류 : "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/tvFoodtype"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="조리시간 : "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tvTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="분"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ex밥"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_marginLeft="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="난이도 : "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tvLevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="초보환영"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
 
                 </LinearLayout>
+
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="조리시간 : "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/tvTime"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="분량 : "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tvPerson"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1 "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="인분"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_marginLeft="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="30"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="분"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="칼로리 : "
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:id="@+id/tvCalorie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="250"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="kcal"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="분량 : "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/tvPerson"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1 "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="인분"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="칼로리 : "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/tvCalorie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="250"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="kcal"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="난이도 : "
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                    <TextView
-                        android:id="@+id/tvLevel"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="초보환영"
-                        android:textStyle="bold"
-                        android:textColor="@color/white"
-                        android:textSize="15dp" />
-                </LinearLayout>
-                <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -364,7 +412,6 @@
                 android:id="@+id/listview_process"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-
 
         </LinearLayout>
 

@@ -138,6 +138,7 @@ public class recipe extends AppCompatActivity {
 
         myListView.setAdapter(adapter);
         setListViewHeightBasedOnChildren(myListView);
+        setListViewHeightBasedOnChildren(lvProcess);
 
 
 
