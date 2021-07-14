@@ -85,9 +85,9 @@ public class Fragment3 extends Fragment {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String opt = r_search.getText().toString();
-                ArrayList<String>optList= new ArrayList<String>(Arrays.asList(opt.split(" ")));
-                searchData(optList);
+//                String opt = r_search.getText().toString();
+//                ArrayList<String>optList= new ArrayList<String>(Arrays.asList(opt.split(" ")));
+//                searchData(optList);
             }
         });
 
@@ -95,19 +95,20 @@ public class Fragment3 extends Fragment {
         r_search.addTextChangedListener(new TextWatcher() {
             @Override
             public void afterTextChanged(Editable edit) {
+                //입력이 끝났을 때 처리하는 부분
                 String filterText = edit.toString() ;
-//                ((RecipeAdapter)R_ListView.getAdapter()).getFilter().filter(filterText) ;
+                ((RecipeAdapter)R_ListView.getAdapter()).getFilter().filter(filterText) ;
                 //((tempRecipeAdapter)R_ListView.getAdapter()).getFilter().filter(filterText) ;
             }
 
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //입력하여 변화가 생기기전
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                //변화와 동시에 처리
             }
 
         });
@@ -228,5 +229,6 @@ public class Fragment3 extends Fragment {
         }
         Log.v(TAG, "searchDATA종료");
     }
+
 
 }
