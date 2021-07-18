@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,8 @@ public class Recommend extends AppCompatActivity {
     SQLiteDatabase database;
     public static final String TAG ="태그 Recommend.java" ;
     ListView R_ListView2;
+    View btn_back;
+    TextView bar_title;
     RecipeAdapter adapter;
     Intent intent;
 
@@ -41,7 +44,9 @@ public class Recommend extends AppCompatActivity {
         intent = getIntent();
         String opt = intent.getStringExtra("ing_list");
         ArrayList<String> optList= new ArrayList<String>(Arrays.asList(opt.split(" ")));
-
+        bar_title = findViewById(R.id.bar_title);
+        btn_back = findViewById(R.id.btn_back);
+        bar_title.setText("레시피 추천");
         R_ListView2 = (ListView) findViewById(R.id.R_ListView2);
         adapter = new RecipeAdapter(getApplicationContext());
         Log.v(TAG, "db실행하기");
@@ -123,6 +128,15 @@ public class Recommend extends AppCompatActivity {
             }
         });
 
+
+        // back 버튼 구현
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
     }
     //onCreate 끝
 
@@ -145,5 +159,7 @@ public class Recommend extends AppCompatActivity {
         listView.setLayoutParams(params);
         listView.requestLayout();
     }
+
+
 
 }
