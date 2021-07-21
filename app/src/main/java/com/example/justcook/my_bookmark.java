@@ -17,6 +17,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.justcook.bookmark.BookmarkQuery;
 import com.example.justcook.fragment.Fragment3;
 import com.example.justcook.itemAdapter.RecipeAdapter;
 import com.example.justcook.itemAdapter.RecipeItem;
@@ -48,7 +49,8 @@ public class my_bookmark extends AppCompatActivity {
         B_ListView.setAdapter(adapter);
         //임시 rcode 리스트 생성
         //ArrayList<Integer> rcode_list = new ArrayList<>(Arrays.asList(1,2,3));
-        ArrayList<Integer> rcode_list = FavoriteQuery.AllBookmarkData();
+        BookmarkQuery BQ = new BookmarkQuery(getApplicationContext());
+        ArrayList<Integer> rcode_list = BQ.AllBookmarkData();
 
         // DB오픈
         Log.v(TAG, "openDB()실행.");

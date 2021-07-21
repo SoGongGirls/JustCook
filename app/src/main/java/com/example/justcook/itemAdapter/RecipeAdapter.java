@@ -10,10 +10,9 @@ import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.justcook.FavoriteQuery;
 import com.example.justcook.R;
+import com.example.justcook.bookmark.BookmarkQuery;
 
 import java.util.ArrayList;
 
@@ -83,14 +82,15 @@ public class RecipeAdapter extends BaseAdapter implements Filterable {
         btnBookmark.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                BookmarkQuery BQ = new BookmarkQuery(mContext);
                 if (btn_cnt[0] == 0){
                     //즐겨찾기를 실행
-                    FavoriteQuery.insertBookmarkRcode(finalItem.getRcode());
-                    Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에 추가해습니다.", Toast.LENGTH_LONG).show();
+                    BQ.insertBookmarkRcode(finalItem.getRcode());
+                    Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에 추가했습니다.", Toast.LENGTH_LONG).show();
                     btn_cnt[0] = 1;
                 }else if (btn_cnt[0] == 1){
                     //즐겨찾기 해제
-                    FavoriteQuery.deleteBookmarkRcode(finalItem.getRcode());
+                    BQ.deleteBookmarkRcode(finalItem.getRcode());
                     Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에서 삭제했습니다.", Toast.LENGTH_LONG).show();
                     btn_cnt[0] = 0;
                 }

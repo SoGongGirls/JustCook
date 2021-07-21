@@ -21,6 +21,7 @@ import java.net.URL;
 public class RecipeItemView extends LinearLayout {
     TextView tvName;
     TextView tvfoodtype;
+    ImageView imageView;
     ImageButton imageButton;
 
 
@@ -42,6 +43,7 @@ public class RecipeItemView extends LinearLayout {
 
         tvName = findViewById(R.id.r_name);
         tvfoodtype = findViewById(R.id.r_type);
+        imageView = findViewById(R.id.r_img);
         imageButton = findViewById(R.id.bookmark_icon);
     }
 
@@ -59,7 +61,7 @@ public class RecipeItemView extends LinearLayout {
 
         //imageView.setImageResource(resId);
 
-        Glide.with(this).load(url).error(R.drawable.title1).into(imageButton);
+        Glide.with(this).load(url).error(R.drawable.title1).into(imageView);
 
     }
 
