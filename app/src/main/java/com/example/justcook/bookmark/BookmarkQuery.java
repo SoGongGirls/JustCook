@@ -70,4 +70,17 @@ public class BookmarkQuery {
         return resultData;
     }
 
+    //북마크에 있는지 확인
+    public boolean checkBookmarkData(int rcode){
+        openDB();
+        String sql = "select * from "+TABLE_NAME+" where rcode = " + rcode ;
+        Cursor result = bookDB.rawQuery(sql, null);
+        int count = result.getCount();
+
+        if (count==0){return false;}
+        else if(count == 1){return true;}
+        else {return false;}
+
+    }
+
 }

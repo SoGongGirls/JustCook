@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 
@@ -31,13 +32,13 @@ public class RecipeAdapter extends BaseAdapter implements Filterable {
         mLayoutInflater = LayoutInflater.from(mContext);
     }
 
+    public void addItem(RecipeItem item) {
+        items.add(item);
+    }
+
     @Override
     public int getCount() {
         return items.size();
-    }
-
-    public void addItem(RecipeItem item) {
-        items.add(item);
     }
 
     @Override
@@ -58,7 +59,6 @@ public class RecipeAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RecipeItemView view = null;
-        //RecyclerView.ViewHolder viewHolder;
         if (convertView == null) {
             view = new RecipeItemView(mContext);
         } else {
@@ -74,33 +74,35 @@ public class RecipeAdapter extends BaseAdapter implements Filterable {
             item = items.get(position);
         }
 
-       // viewHolder = new RecyclerView.ViewHolder();
+        //데이터 값 표시하기
+        view.setName(item.getName());
+        view.setFoodType(item.getFoodtype());
+        view.setImage(item.getImglink());
+        view.setBook(item.getRcode());
 
+        //즐겨찾기 구현
         ImageButton btnBookmark = (ImageButton) view.findViewById(R.id.bookmark_icon);
-        final Integer[] btn_cnt = {0};
         RecipeItem finalItem = item;
         btnBookmark.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 BookmarkQuery BQ = new BookmarkQuery(mContext);
-                if (btn_cnt[0] == 0){
+                boolean check = BQ.checkBookmarkData(finalItem.getRcode());
+
+                if (check == false){
                     //즐겨찾기를 실행
                     BQ.insertBookmarkRcode(finalItem.getRcode());
                     Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에 추가했습니다.", Toast.LENGTH_LONG).show();
-                    btn_cnt[0] = 1;
-                }else if (btn_cnt[0] == 1){
+                    btnBookmark.setImageResource(R.drawable.bookmark_selected);
+                }else if (check== true){
                     //즐겨찾기 해제
                     BQ.deleteBookmarkRcode(finalItem.getRcode());
                     Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에서 삭제했습니다.", Toast.LENGTH_LONG).show();
-                    btn_cnt[0] = 0;
+                    btnBookmark.setImageResource(R.drawable.bookmark_none);
                 }
 
             }
         });
-
-        view.setName(item.getName());
-        view.setFoodType(item.getFoodtype());
-        view.setImage(item.getImglink());
 
         return view;
     }

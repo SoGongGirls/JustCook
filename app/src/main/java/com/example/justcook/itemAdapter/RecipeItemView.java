@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.example.justcook.R;
+import com.example.justcook.bookmark.BookmarkQuery;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -23,9 +24,6 @@ public class RecipeItemView extends LinearLayout {
     TextView tvfoodtype;
     ImageView imageView;
     ImageButton imageButton;
-
-
-
 
     public RecipeItemView(Context context){
         super(context);
@@ -56,23 +54,17 @@ public class RecipeItemView extends LinearLayout {
     }
 
     public void setImage(String url){
-        //Drawable mDrawable = loadImage(url);
-        //imageView.setImageDrawable(mDrawable);
-
-        //imageView.setImageResource(resId);
-
         Glide.with(this).load(url).error(R.drawable.title1).into(imageView);
-
     }
-
-
-    private Drawable loadImage(String url){
-        try{
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "srcName");
-            return d;
-        }catch (Exception e){
-            return null;
+    public void setBook(int rcode){
+        BookmarkQuery BQ = new BookmarkQuery(getContext());
+        boolean check = BQ.checkBookmarkData(rcode);
+        if (check){
+            imageButton.setImageResource(R.drawable.bookmark_selected);
+        }else{
+            imageButton.setImageResource(R.drawable.bookmark_none);
         }
+
     }
+
 }

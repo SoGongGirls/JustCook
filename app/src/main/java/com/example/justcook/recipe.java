@@ -75,7 +75,7 @@ public class recipe extends AppCompatActivity {
         TextView tvLevel = (TextView)findViewById(R.id.tvLevel);
         TextView tvBase = (TextView)findViewById(R.id.tvBase);
         //CardView recipe_image = (CardView)findViewById(R.id.cvFood);
-        //ImageView recipe_image = (ImageView)findViewById(R.id.recipe_image);
+        ImageView recipe_image = (ImageView)findViewById(R.id.cvFood);
 
         //db 오픈
         if (db == null){
@@ -108,8 +108,8 @@ public class recipe extends AppCompatActivity {
 
             // Glide로 이미지 표시하기
             String imageUrl = cursor.getString(9);
-            //Log.v(TAG, imageUrl);
-            //Glide.with(this).load(imageUrl).error(R.drawable.test_food).into(recipe_image);
+            Log.v(TAG, imageUrl);
+            Glide.with(this).load(imageUrl).error(R.drawable.test_food).into(recipe_image);
 
             cursor.close();
         } else {

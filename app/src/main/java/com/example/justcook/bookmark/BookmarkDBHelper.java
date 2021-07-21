@@ -28,7 +28,8 @@ public class BookmarkDBHelper extends SQLiteOpenHelper {
         Log.v(TAG, "onCreate 호출");
         String sql = "create table if not exists bookmarkRcode("
                 + "_id integer PRIMARY KEY autoincrement, "
-                + " rcode integer)";
+                + "rcode integer)";
+
         db.execSQL(sql);
     }
 
