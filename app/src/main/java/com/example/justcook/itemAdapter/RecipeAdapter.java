@@ -7,8 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.justcook.FavoriteQuery;
+import com.example.justcook.R;
 
 import java.util.ArrayList;
 
@@ -54,9 +59,9 @@ public class RecipeAdapter extends BaseAdapter implements Filterable {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         RecipeItemView view = null;
+        //RecyclerView.ViewHolder viewHolder;
         if (convertView == null) {
             view = new RecipeItemView(mContext);
-
         } else {
             view = (RecipeItemView) convertView;
         }
@@ -70,6 +75,28 @@ public class RecipeAdapter extends BaseAdapter implements Filterable {
             item = items.get(position);
         }
 
+       // viewHolder = new RecyclerView.ViewHolder();
+
+        ImageButton btnBookmark = (ImageButton) view.findViewById(R.id.bookmark_icon);
+        final Integer[] btn_cnt = {0};
+        RecipeItem finalItem = item;
+        btnBookmark.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if (btn_cnt[0] == 0){
+                    //즐겨찾기를 실행
+                    FavoriteQuery.insertBookmarkRcode(finalItem.getRcode());
+                    Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에 추가해습니다.", Toast.LENGTH_LONG).show();
+                    btn_cnt[0] = 1;
+                }else if (btn_cnt[0] == 1){
+                    //즐겨찾기 해제
+                    FavoriteQuery.deleteBookmarkRcode(finalItem.getRcode());
+                    Toast.makeText(mContext, finalItem.getName()+"을/를 북마크에서 삭제했습니다.", Toast.LENGTH_LONG).show();
+                    btn_cnt[0] = 0;
+                }
+
+            }
+        });
 
         view.setName(item.getName());
         view.setFoodType(item.getFoodtype());

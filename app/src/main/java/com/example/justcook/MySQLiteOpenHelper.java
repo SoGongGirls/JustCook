@@ -22,25 +22,17 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     static int VERSION  = 1;
 
     public MySQLiteOpenHelper(Context context) {
-
         super(context, NAME, FACTORY, VERSION);
         // TODO Auto-generated constructor stub
         try {
-
             boolean bResult = isCheckDB(context);  // DB가 있는지?
-
             Log.i("MySQLiteOpenHelper", "DB Check="+bResult);
-
             if(!bResult){   // DB가 없으면 복사
-
                 copyDB(context);
-
             }else{
-
             }
 
         } catch (Exception e) {
-
         }
 
     }

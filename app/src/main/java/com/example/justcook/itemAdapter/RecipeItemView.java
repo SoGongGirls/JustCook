@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -19,7 +21,10 @@ import java.net.URL;
 public class RecipeItemView extends LinearLayout {
     TextView tvName;
     TextView tvfoodtype;
-    ImageView imageView;
+    ImageButton imageButton;
+
+
+
 
     public RecipeItemView(Context context){
         super(context);
@@ -37,7 +42,7 @@ public class RecipeItemView extends LinearLayout {
 
         tvName = findViewById(R.id.r_name);
         tvfoodtype = findViewById(R.id.r_type);
-        imageView = findViewById(R.id.r_img);
+        imageButton = findViewById(R.id.bookmark_icon);
     }
 
     public void setName(String name){
@@ -54,9 +59,11 @@ public class RecipeItemView extends LinearLayout {
 
         //imageView.setImageResource(resId);
 
-        Glide.with(this).load(url).error(R.drawable.title1).into(imageView);
+        Glide.with(this).load(url).error(R.drawable.title1).into(imageButton);
 
     }
+
+
     private Drawable loadImage(String url){
         try{
             InputStream is = (InputStream) new URL(url).getContent();

@@ -43,8 +43,8 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/r_icon"
+        <ImageButton
+            android:id="@+id/bookmark_icon"
             android:layout_gravity="center"
             android:layout_width="50dp"
             android:layout_height="50dp"
