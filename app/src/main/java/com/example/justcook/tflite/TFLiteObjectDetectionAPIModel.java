@@ -12,6 +12,7 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -91,17 +92,26 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
         final TFLiteObjectDetectionAPIModel d = new TFLiteObjectDetectionAPIModel();
 
         MappedByteBuffer modelFile = loadModelFile(context.getAssets(), modelFilename);
-        MetadataExtractor metadata = new MetadataExtractor(modelFile);
+        MetadataExtractor metadata2 = new MetadataExtractor(modelFile);
         try (BufferedReader br =
                      new BufferedReader(
                              new InputStreamReader(
-                                     metadata.getAssociatedFile(labelFilename), Charset.defaultCharset()))) {
+                                     metadata2.getAssociatedFile(labelFilename), Charset.defaultCharset()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 Log.w(TAG, line);
                 d.labels.add(line);
             }
         }
+        //AssetManager am2 = context.getAssets();
+        //try (InputStream is2 = am2.open(labelFilename);
+        //     BufferedReader br = new BufferedReader(new InputStreamReader(is2))) {
+        //        String line;
+        //        while ((line = br.readLine()) != null) {
+        //            Log.w(TAG, line);
+        //            d.labels.add(line);
+        //        }
+        //     }
 
         d.inputSize = inputSize;
 
@@ -124,7 +134,8 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
         } else {
             numBytesPerChannel = 4; // Floating point
         }
-        d.imgData = ByteBuffer.allocateDirect(1 * d.inputSize * d.inputSize * 3 * numBytesPerChannel);
+
+        d.imgData = ByteBuffer.allocateDirect(1 * 300 * 300 * 3 * 1);
         d.imgData.order(ByteOrder.nativeOrder());
         d.intValues = new int[d.inputSize * d.inputSize];
 
