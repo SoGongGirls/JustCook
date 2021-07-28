@@ -109,7 +109,7 @@ public class Input_Ingredients extends AppCompatActivity {
 //        adapter1.addItem(ContextCompat.getDrawable(this, R.drawable.potato),"감자", ContextCompat.getDrawable(this, R.drawable.add));
 //        adapter1.addItem(ContextCompat.getDrawable(this, R.drawable.sweetpotato),"고구마", ContextCompat.getDrawable(this, R.drawable.add));
 //
-//        // 조미료
+//        // 조 미료
 //        adapter1.addItem(ContextCompat.getDrawable(this, R.drawable.salt),"소금", ContextCompat.getDrawable(this, R.drawable.add));
 //        adapter1.addItem(ContextCompat.getDrawable(this, R.drawable.sugar),"설탕", ContextCompat.getDrawable(this, R.drawable.add));
 //        adapter1.addItem(ContextCompat.getDrawable(this, R.drawable.soysauce),"간장", ContextCompat.getDrawable(this, R.drawable.add));
