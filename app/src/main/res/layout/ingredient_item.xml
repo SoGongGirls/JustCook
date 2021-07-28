@@ -35,7 +35,7 @@
 
         </LinearLayout>
 
-        <ImageView
+        <ImageButton
             android:id="@+id/i_icon"
             android:layout_gravity="center"
             android:layout_width="50dp"

@@ -41,6 +41,7 @@
             </LinearLayout>
 
             <ListView
+                android:id="@+id/first_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -61,6 +62,7 @@
 
             </LinearLayout>
             <ListView
+                android:id="@+id/second_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -81,8 +83,15 @@
 
             </LinearLayout>
             <ListView
+                android:id="@+id/third_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/btn_confirm_ing"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="재료확인!"/>
+
 
             <EditText
                 android:id="@+id/edit_ing"

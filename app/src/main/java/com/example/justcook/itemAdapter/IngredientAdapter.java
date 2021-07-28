@@ -1,10 +1,16 @@
 package com.example.justcook.itemAdapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.example.justcook.R;
+import com.example.justcook.bookmark.BookmarkQuery;
 
 import java.util.ArrayList;
 
