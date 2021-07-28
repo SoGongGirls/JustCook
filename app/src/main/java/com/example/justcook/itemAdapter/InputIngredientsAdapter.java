@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -74,7 +75,7 @@ public class InputIngredientsAdapter extends BaseAdapter implements Filterable {
         // 화면에 표시될 View(Layout이 inflate된)으로부터 위젯에 대한 참조 획득
         ImageView i_img = (ImageView) view.findViewById(R.id.i_img) ;
         TextView i_name = (TextView) view.findViewById(R.id.i_name) ;
-        ImageView i_icon = (ImageView) view.findViewById(R.id.i_icon);
+        ImageButton i_icon = (ImageButton) view.findViewById(R.id.i_icon);
 
         // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         InputIngredientsItem listViewItem = filteredItemList.get(position);
@@ -83,6 +84,24 @@ public class InputIngredientsAdapter extends BaseAdapter implements Filterable {
         i_img.setImageDrawable(listViewItem.getI_img());
         i_name.setText(listViewItem.getI_name());
         i_icon.setImageDrawable(listViewItem.getI_icon());
+
+        //재료 추가버튼을 누르면~
+        i_icon.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //listViewItem.getCheck()
+                if (listViewItem.getCheck()) { //true 일때 = 추가 된 상태 => 삭제작업
+                    //TextView 에 값 추가?
+                    i_icon.setBackgroundResource(R.drawable.selector);
+                    listViewItem.setCheck(false);
+                }else{//true 일때 = 추가 안 된 상태 => 추가 작업
+                    //TextView 에 값 추가?
+                    i_icon.setBackgroundResource(R.drawable.ic_delete);
+                    listViewItem.setCheck(true);
+                }
+
+            }
+        });
 
         return view;
 
