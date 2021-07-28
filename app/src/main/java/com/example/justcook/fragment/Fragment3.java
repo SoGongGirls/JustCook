@@ -39,8 +39,8 @@ import static android.database.sqlite.SQLiteDatabase.openOrCreateDatabase;
 
 public class Fragment3 extends Fragment {
     SQLiteDatabase database;
-    public static final String TAG ="태그 Fragment3.java" ;
     ListView R_ListView;
+    public static final String TAG ="태그 Fragment3.java" ;
     RecipeAdapter adapter;
 
 

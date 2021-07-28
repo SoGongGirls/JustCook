@@ -38,6 +38,7 @@ public class IngredientAdapter extends BaseAdapter {
         }else{
             view = (IngredientitemView) convertView;
         }
+
         com.example.justcook.itemAdapter.Ingredientitem item = items.get(position);
         view.setINGname(item.getName());
         view.setINGQuantity(item.getQuantity());
