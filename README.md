@@ -99,8 +99,12 @@ labelImg를 통해 이미지 각각에 대해 boundary-box를 지정해줌.
 `tflite_convert --output_file=face_ssd.tflite --graph_def_file=tflite_graph.pb --inference_type=QUANTIZED_UINT8 --input_shapes=1,320,320,3 --input_arrays normalized_input_image_tensor --output_arrays "TFLite_Detection_PostProcess,TFLite_Detection_PostProcess:1,TFLite_Detection_PostProcess:2,TFLite_Detection_PostProcess:3" --mean_values 128 --std_dev_values 128 --allow_custom_ops --change_concat_input_ranges=false --allow_nudging_weights_to_use_fast_gemm_kernel=true`     
   
 + :x:메타데이터 추가 시 다음과 같은 에러 발생:x:   
-`ValueError: The number of output tensors (1) should match the number of output tensor metadata (4)`
-
+`ValueError: The number of output tensors (1) should match the number of output tensor metadata (4)`   
+   
+  원인은 모델 output의 형태 때문이라고 추정
+  + 메타데이터 추가 가능 모델    <img src="./images/can_tflite.png" height="250">
+  + 메타데이터 추가 불가능 모델 (darkflow 모델)   
+  <img src="./images/darkflow_result.png" height="400">   
   
   
    
