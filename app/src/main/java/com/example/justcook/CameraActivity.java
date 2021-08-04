@@ -26,6 +26,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -97,6 +98,19 @@ public abstract class CameraActivity extends AppCompatActivity
         gestureLayout = findViewById(R.id.gesture_layout);
         sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
+        //<--추가내용
+        TextView tvCmrIng = findViewById(R.id.tvCmrIng);
+        Button tvCmrConfirm = findViewById(R.id.tvCmrConfirm);
+
+        tvCmrIng.setText("토마토");
+
+        tvCmrConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //재료를 냉장고에 넣는작업.
+            }
+        });
+        //--추가내용-->
 
         ViewTreeObserver vto = gestureLayout.getViewTreeObserver();
         vto.addOnGlobalLayoutListener(
@@ -153,7 +167,7 @@ public abstract class CameraActivity extends AppCompatActivity
 
         plusImageView.setOnClickListener(this);
         minusImageView.setOnClickListener(this);
-    }
+    }//onCreate
 
     protected int[] getRgbBytes() {
         imageConverter.run();
