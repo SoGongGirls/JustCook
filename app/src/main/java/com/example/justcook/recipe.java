@@ -74,7 +74,7 @@ public class recipe extends AppCompatActivity {
         TextView tvPerson = (TextView)findViewById(R.id.tvPerson);
         TextView tvLevel = (TextView)findViewById(R.id.tvLevel);
         TextView tvBase = (TextView)findViewById(R.id.tvBase);
-        //CardView recipe_image = (CardView)findViewById(R.id.cvFood);
+        TextView tvBaseOpt = (TextView)findViewById(R.id.tvbaseOpt);
         ImageView recipe_image = (ImageView)findViewById(R.id.cvFood);
 
         //db 오픈
@@ -104,7 +104,14 @@ public class recipe extends AppCompatActivity {
             tvCalorie.setText(cursor.getString(5));
             tvPerson.setText(cursor.getString(6));
             tvLevel.setText(cursor.getString(7));
-            tvBase.setText(cursor.getString(8));
+            //tvBase.setText(cursor.getString(8));
+            String base = cursor.getString(8);
+            if (base == null) {
+                tvBase.setVisibility(View.GONE);
+                tvBaseOpt.setVisibility(View.GONE);
+            }else{
+                tvBase.setText(cursor.getString(8));
+            }
 
             // Glide로 이미지 표시하기
             String imageUrl = cursor.getString(9);

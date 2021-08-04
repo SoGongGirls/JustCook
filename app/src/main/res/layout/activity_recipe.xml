@@ -293,9 +293,10 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/tvbaseOpt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="베이스? : "
+                        android:text="베이스 : "
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
@@ -303,7 +304,7 @@
                         android:id="@+id/tvBase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="어류"
+                        android:text="ex어류"
                         android:textStyle="bold"
                         android:textColor="@color/white"
                         android:textSize="15dp" />
