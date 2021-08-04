@@ -86,7 +86,27 @@ labelImg를 통해 이미지 각각에 대해 boundary-box를 지정해줌.
 :bulb: 성공적으로 인식된 사진들   
    
 <img src="./images/Loaf_Bread12_thumb_l_6e0c212831126bc82380bec5b8496999.jpg" height="315"><img src="./images/egg14.jpg" height="315">   
-<img src="./images/tomato39.jpg" height="350"><img src="./images/2629B14F55AB61740E.jpg" height="350">   
+<img src="./images/tomato39.jpg" height="350"><img src="./images/2629B14F55AB61740E.jpg" height="350">
+<br/>   
+<br/>   
+   
+### 5️⃣ convert to tflite   
+안드로이드 스튜디오에 모델을 삽입하기 위해서는 pb -> tflite 형식으로 변환하고 메타데이터를 추가해주어야 함   
++ pb 파일로 변환하기   
+`python flow --model ./cfg/파일명.cfg --labels ./labels.txt --load -1 --savepb`   
+    
++ tflite 파일로 변환하기   
+`tflite_convert --output_file=face_ssd.tflite --graph_def_file=tflite_graph.pb --inference_type=QUANTIZED_UINT8 --input_shapes=1,320,320,3 --input_arrays normalized_input_image_tensor --output_arrays "TFLite_Detection_PostProcess,TFLite_Detection_PostProcess:1,TFLite_Detection_PostProcess:2,TFLite_Detection_PostProcess:3" --mean_values 128 --std_dev_values 128 --allow_custom_ops --change_concat_input_ranges=false --allow_nudging_weights_to_use_fast_gemm_kernel=true`     
+  
++ :x:메타데이터 추가 시 다음과 같은 에러 발생:x:   
+`ValueError: The number of output tensors (1) should match the number of output tensor metadata (4)`   
+   
+  원인은 모델 output의 형태 때문이라고 추정
+  + 메타데이터 추가 가능 모델    <img src="./images/can_tflite.png" height="250">
+  + 메타데이터 추가 불가능 모델 (darkflow 모델)   
+  <img src="./images/darkflow_result.png" height="400">   
+  
+  
    
 </div>
 </details>

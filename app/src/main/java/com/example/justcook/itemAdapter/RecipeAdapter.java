@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class RecipeAdapter extends BaseAdapter implements Filterable {
 
-    Filter listFilter ;
+    Filter listFilter;
     Context mContext = null;
     LayoutInflater mLayoutInflater = null;
     ArrayList<RecipeItem> items = new ArrayList<RecipeItem>();

@@ -27,6 +27,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.ExpandableHeightGridView;
 import com.example.justcook.itemAdapter.IngredientAdapter;
 import com.example.justcook.itemAdapter.Ingredientitem;
 import com.example.justcook.itemAdapter.ProcessAdapter;
@@ -57,6 +58,7 @@ public class recipe extends AppCompatActivity {
         GridView IngMain = (GridView) findViewById(R.id.gv_ing_main);
         GridView IngSrc = (GridView) findViewById(R.id.gv_ing_src);
         GridView IngSub = (GridView) findViewById(R.id.gv_ing_sub);
+
 
         Intent intent = getIntent();
         rcode = intent.getStringExtra("rcode");
@@ -147,6 +149,10 @@ public class recipe extends AppCompatActivity {
         setListViewHeightBasedOnChildren(myListView);
         setListViewHeightBasedOnChildren(lvProcess);
 
+        setGridViewHeightBasedOnChildren(IngMain,4);
+        setGridViewHeightBasedOnChildren(IngSrc,4);
+        setGridViewHeightBasedOnChildren(IngSub,4);
+
 
 
     }//onCreate()
@@ -166,6 +172,35 @@ public class recipe extends AppCompatActivity {
         listView.setLayoutParams(params);
         listView.requestLayout();
         return System.currentTimeMillis()- timer;
+    }
+
+
+    public void setGridViewHeightBasedOnChildren(GridView gridView, int columns) {
+        ListAdapter listAdapter = gridView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        int items = listAdapter.getCount();
+        int rows = 0;
+
+        View listItem = listAdapter.getView(0, null, gridView);
+        listItem.measure(0, 0);
+        totalHeight = listItem.getMeasuredHeight();
+
+        float x = 1;
+        if( items > columns ){
+            x = items/columns;
+            rows = (int) (x + 1);
+            totalHeight *= rows;
+        }
+
+        ViewGroup.LayoutParams params = gridView.getLayoutParams();
+        params.height = totalHeight;
+        gridView.setLayoutParams(params);
+
     }
 
 

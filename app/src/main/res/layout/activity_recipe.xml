@@ -340,7 +340,8 @@
                 android:id="@+id/gv_ing_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:numColumns="4"/>
+                android:scrollbars="none"
+                android:numColumns="2"/>
 
             <LinearLayout
                 android:id="@+id/LayoutSrc"
@@ -360,7 +361,8 @@
                     android:id="@+id/gv_ing_src"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numColumns="4"/>
+                    android:scrollbars="none"
+                    android:numColumns="2"/>
 
             </LinearLayout>
 
@@ -382,7 +384,8 @@
                     android:id="@+id/gv_ing_sub"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numColumns="4"/>
+                    android:scrollbars="none"
+                    android:numColumns="2"/>
 
             </LinearLayout>
 
