@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.justcook.R;
@@ -49,6 +50,7 @@ public class Fragment2 extends Fragment {
         InputIngredientsAdapter adapter2nd = new InputIngredientsAdapter();
         InputIngredientsAdapter adapter3th = new InputIngredientsAdapter();
 
+
         //여기를 카메라 입력값에서 가져온다.
         ArrayList<String> item1st = new ArrayList<String>(Arrays.asList("소고기", "돼지고기", "호박"));
 
@@ -59,7 +61,9 @@ public class Fragment2 extends Fragment {
         }
 
         first_item.setAdapter(adapter1st);
-
+        setListViewHeightBasedOnChildren(first_item);
+        setListViewHeightBasedOnChildren(second_item);
+        setListViewHeightBasedOnChildren(third_item);
 
 
         //추가된 재료 확인 버튼
@@ -89,6 +93,8 @@ public class Fragment2 extends Fragment {
             }
         });
 
+
+
         //레시피 추천버튼 클릭
         btn_recipe_recommend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +108,30 @@ public class Fragment2 extends Fragment {
             }
         });
 
+
+
         return view;
+    }
+
+
+    /* 리스트뷰 크기 조절 메소드 */
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

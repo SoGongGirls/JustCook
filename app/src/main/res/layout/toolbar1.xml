@@ -18,7 +18,8 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -27,14 +28,17 @@
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp">
 
-
-                <ImageView
-                    android:id="@+id/my_page"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/option"
-                    android:layout_gravity="center"
-                    app:tint="@color/deep_red" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/my_page"
+                        android:layout_width="30dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/option"
+                        android:layout_gravity="center"
+                        app:tint="@color/deep_red" />
+                </LinearLayout>
 
                 <ImageView
                     android:layout_width="319dp"
