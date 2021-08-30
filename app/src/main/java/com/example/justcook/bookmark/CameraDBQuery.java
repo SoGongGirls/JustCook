@@ -32,16 +32,16 @@ public class CameraDBQuery {
     //북마크에 저장
     public void insertCmrDB(String name){
         openDB();
-        String sql = "insert into "+TABLE_NAME+" (name) values ("
-                + name +");";
+        String sql = "insert into "+TABLE_NAME+" (name) values (\""
+                + name +"\");";
         DB.execSQL(sql);
     }
 
     //북마크 삭제
     public void deleteCmrDB(String name){
         openDB();
-        String sql = "delete from "+TABLE_NAME+" where rcode = "
-                + name ;
+        String sql = "delete from "+TABLE_NAME+" where name = \""
+                + name +"\"" ;
 
         DB.execSQL(sql);
     }
@@ -72,7 +72,8 @@ public class CameraDBQuery {
     //북마크에 있는지 확인
     public boolean checkCmrDBkData(String name){
         openDB();
-        String sql = "select * from "+TABLE_NAME+" where name = " + name ;
+        String sql = "select * from "+TABLE_NAME+" where name=\"" + name+"\"" ;
+        Log.e(TAG, sql);
         Cursor result = DB.rawQuery(sql, null);
         int count = result.getCount();
 

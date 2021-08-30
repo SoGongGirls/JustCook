@@ -30,6 +30,7 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -104,19 +105,19 @@ public abstract class CameraActivity extends AppCompatActivity
         sheetBehavior = BottomSheetBehavior.from(bottomSheetLayout);
         bottomSheetArrowImageView = findViewById(R.id.bottom_sheet_arrow);
         //<--추가내용
-        TextView tvCmrIng = findViewById(R.id.tvCmrIng);
-        Button tvCmrConfirm = findViewById(R.id.tvCmrConfirm);
+        EditText tvObjectName = findViewById(R.id.tvObjectName);
+        Button btnObjectAdd = findViewById(R.id.btnObjectAdd);
 
-        tvCmrIng.setText("토마토");
+        tvObjectName.setText("토마토");
 
-        tvCmrConfirm.setOnClickListener(new View.OnClickListener() {
+        btnObjectAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //클릭하면 재료를 냉장고에 넣는다.
                 CameraDBQuery CQ = new CameraDBQuery(getApplicationContext());
-                String name = (String) tvCmrIng.getText();
+                String name = String.valueOf(tvObjectName.getText());
                 boolean ch = CQ.checkCmrDBkData(name);
-                if (!ch){
+                if (ch){
                     //이미 DB에 있으면 추가할 필요가 없음
                     Log.v("확인클릭", "재료가 이미 냉장고에 있습니다.");
                     Toast.makeText(getApplicationContext(), "이미 냉장고에 있습니다.", Toast.LENGTH_LONG ).show();

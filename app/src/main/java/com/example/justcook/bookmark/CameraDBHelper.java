@@ -9,7 +9,7 @@ public class CameraDBHelper extends SQLiteOpenHelper {
 
     public static String DB_NAME = "CameraInputIngredients.db";
     public static int VERSION = 1;
-    public static String TAG = "북마크";
+    public static String TAG = "카메라DBHelper";
 
     public CameraDBHelper(Context context){
         super(context, DB_NAME, null, VERSION);

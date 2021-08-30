@@ -18,25 +18,6 @@
             android:layout_height="match_parent"
             tools:context="org.tensorflow.demo.CameraActivity" >
 
-            <LinearLayout
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/tvCmrIng"
-                    android:layout_weight="4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#FFFFFF"
-                    android:text="인식된 재료가 표시됩니다." />
-                <Button
-                    android:id="@+id/tvCmrConfirm"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="확인"/>
-            </LinearLayout>
-
 
         </FrameLayout>
 

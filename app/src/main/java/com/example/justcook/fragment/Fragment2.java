@@ -18,8 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.example.justcook.MySQLiteOpenHelper;
 import com.example.justcook.R;
 import com.example.justcook.Recommend;
+import com.example.justcook.bookmark.BookmarkQuery;
+import com.example.justcook.bookmark.CameraDBQuery;
 import com.example.justcook.itemAdapter.InputIngredientsAdapter;
 import com.example.justcook.itemAdapter.InputIngredientsItem;
 
@@ -50,7 +53,11 @@ public class Fragment2 extends Fragment {
         InputIngredientsAdapter adapter3th = new InputIngredientsAdapter();
 
         //여기를 카메라 입력값에서 가져온다. DB로 수정하기
-        ArrayList<String> item1st = new ArrayList<String>(Arrays.asList("소고기", "돼지고기", "호박"));
+        //ArrayList<String> item1st = new ArrayList<String>(Arrays.asList("소고기", "돼지고기", "호박"));
+
+        CameraDBQuery CQ = new CameraDBQuery(getContext());
+        ArrayList<String> item1st = CQ.AllCmrDBData();
+
 
         for (int i = 0; i<item1st.size(); i++){
             adapter1st.addItem(ContextCompat.getDrawable(getContext(), R.drawable.appicon1),
