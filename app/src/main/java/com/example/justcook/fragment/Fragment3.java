@@ -113,6 +113,9 @@ public class Fragment3 extends Fragment {
 
         });
 
+
+
+
         // 레시피 상세 보기
         R_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

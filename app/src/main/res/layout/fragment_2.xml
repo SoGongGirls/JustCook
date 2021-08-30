@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".fragment.Fragment2">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="590dp"
+        android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -25,94 +25,123 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:background="@color/orange"
-                android:paddingLeft="10dp">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <EditText
+                    android:id="@+id/edit_ing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="재료를 입력해주세요" />
+
+                <Button
+                    android:id="@+id/btn_recipe_recommend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="1등칸"
-                    android:textColor="@color/white"
+                    android:layout_marginLeft="5dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="레시피 찾기"
+                    android:textColor="@color/deep_red"
                     android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:background="@drawable/next_clipping"/>
 
             </LinearLayout>
 
-            <ListView
-                android:id="@+id/first_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:paddingLeft="10dp"
-                android:background="@color/orange">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@color/orange"
+                    android:paddingLeft="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="1등칸"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/first_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:paddingLeft="10dp"
+                    android:background="@color/orange">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="2등칸"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+                <ListView
+                    android:id="@+id/second_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:paddingLeft="10dp"
+                    android:background="@color/orange">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="3등칸"
+                        android:textStyle="bold"
+                        android:textSize="20dp"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <ListView
+                    android:id="@+id/third_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:id="@+id/btn_confirm_ing"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="2등칸"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/white" />
+                    android:text="재료확인!"/>
 
             </LinearLayout>
-            <ListView
-                android:id="@+id/second_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+        </ScrollView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:paddingLeft="10dp"
-                android:background="@color/orange">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="3등칸"
-                    android:textStyle="bold"
-                    android:textSize="20dp"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-            <ListView
-                android:id="@+id/third_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btn_confirm_ing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="재료확인!"/>
+    </LinearLayout>
 
 
-            <EditText
-                android:id="@+id/edit_ing"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14dp"
-                android:hint="재료를 입력해주세요"/>
-
-            <Button
-                android:id="@+id/btn_recipe_recommend"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="레시피 찾기"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:background="@drawable/btn_clipping" />
-
-
-        </LinearLayout>
 
 
 
