@@ -21,6 +21,8 @@ import android.os.Trace;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
+
+import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.view.View;
@@ -33,6 +35,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+
+import com.example.justcook.bookmark.BookmarkQuery;
+import com.example.justcook.bookmark.CameraDBQuery;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import java.nio.ByteBuffer;
 import com.example.justcook.env.ImageUtils;
@@ -107,7 +112,19 @@ public abstract class CameraActivity extends AppCompatActivity
         tvCmrConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //재료를 냉장고에 넣는작업.
+                //클릭하면 재료를 냉장고에 넣는다.
+                CameraDBQuery CQ = new CameraDBQuery(getApplicationContext());
+                String name = (String) tvCmrIng.getText();
+                boolean ch = CQ.checkCmrDBkData(name);
+                if (!ch){
+                    //이미 DB에 있으면 추가할 필요가 없음
+                    Log.v("확인클릭", "재료가 이미 냉장고에 있습니다.");
+                    Toast.makeText(getApplicationContext(), "이미 냉장고에 있습니다.", Toast.LENGTH_LONG ).show();
+                }else{
+                    //DB에 없으므로 추가
+                    CQ.insertCmrDB(name);
+                    Toast.makeText(getApplicationContext(), "냉장고에 "+name+"이(가) 추가되었습니다.", Toast.LENGTH_LONG ).show();
+                }
             }
         });
         //--추가내용-->

@@ -28,7 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
-                    android:text="TextView" />
+                    android:text="인식된 재료가 표시됩니다." />
                 <Button
                     android:id="@+id/tvCmrConfirm"
                     android:layout_weight="1"
@@ -45,5 +45,5 @@
     <include
         android:id="@+id/bottom_sheet_layout"
         layout="@layout/tfe_od_layout_bottom_sheet"
-        android:visibility="invisible" />
+        android:visibility="visible" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -49,7 +49,7 @@ public class Fragment2 extends Fragment {
         InputIngredientsAdapter adapter2nd = new InputIngredientsAdapter();
         InputIngredientsAdapter adapter3th = new InputIngredientsAdapter();
 
-        //여기를 카메라 입력값에서 가져온다.
+        //여기를 카메라 입력값에서 가져온다. DB로 수정하기
         ArrayList<String> item1st = new ArrayList<String>(Arrays.asList("소고기", "돼지고기", "호박"));
 
         for (int i = 0; i<item1st.size(); i++){
